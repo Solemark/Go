@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package check_palindrome
 
 func check_palindrome(str string) bool {
 	c := len(str) - 1
@@ -11,10 +9,4 @@ func check_palindrome(str string) bool {
 		c--
 	}
 	return true
-}
-
-func main(){
-	fmt.Println("is DAD a palindrome?", check_palindrome("DAD"))
-	fmt.Println("is Dad a palindrome?", check_palindrome("Dad"))
-	fmt.Println("is 123456789987654321 a palindrome?", check_palindrome("123456789987654321"))
 }

@@ -1,7 +1,6 @@
-package main
+package fizz_buzz
 
 import (
-	"fmt"
 	"strconv"
 )
 
@@ -23,8 +22,4 @@ func fizz_buzz(fizz int, buzz int, max int) string{
 		output += str 
 	}
 	return output
-}
-
-func main(){
-	fmt.Println(fizz_buzz(3, 5, 20))
 }
