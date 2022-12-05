@@ -2,7 +2,7 @@
 
 run code with:
 
-    go run hello_world.go
+    go run name.go
 
 run tests with:
 
