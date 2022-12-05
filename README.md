@@ -6,4 +6,6 @@ run code with:
 
 run tests with:
 
-    go test OR go test -v
+    go test
+    OR
+    go test -v
