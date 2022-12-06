@@ -30,6 +30,14 @@ func get_grade(mark int) string{
 	}
 }
 
+func save(students[]Student, name string, s_mark string) []Student{
+	mark, _ := strconv.Atoi(s_mark)
+	student := Student{name, mark}
+	students = append(students, student)
+	
+	return students
+}
+
 func main() {
 	app := app.New()
 	window := app.NewWindow("Marks GUI")
@@ -42,12 +50,10 @@ func main() {
 	output := binding.NewString()
 
 	s_output := ""
-	output.Set(s_output)
+	output.Set("")
 	
 	save_button := widget.NewButton("Save", func(){
-		mark, _ := strconv.Atoi(mark_input.Text)
-		student := Student{name_input.Text, mark}
-		students = append(students, student)
+		students = save(students, name_input.Text, mark_input.Text)
 		name_input.SetText("")
 		mark_input.SetText("")
 	})
