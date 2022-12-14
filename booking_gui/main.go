@@ -24,14 +24,17 @@ type Booking struct{
 	pool_maintenance bool
 }
 
-func get_luxury_cost(luxury_cost int, security_alarm_check bool, pool_maintenance bool) int{
+func get_total_cost(num_weeks int, rooms_cost int, garden_area_cost int, security_alarm_check bool, pool_maintenance bool) int{
+	luxury_cost := 0
+	luxury_cost += rooms_cost
+	luxury_cost += garden_area_cost
 	if(security_alarm_check){
 		luxury_cost += 50
 	}
 	if(pool_maintenance){
 		luxury_cost += 50
 	}
-	return luxury_cost
+	return (luxury_cost * num_weeks)
 }
 
 func save(bookings[]Booking, booking_date string, num_weeks int, property_owner_name string, contact_number string, address string, rooms int, garden_area int, security_alarm_check bool, pool_maintenance bool) []Booking{
@@ -86,7 +89,7 @@ func booking_gui(){
 		s_output = ""
 		output.Set(s_output)
 		for i := 0; i < len(bookings); i++ {
-			s_output += "ID: " + strconv.Itoa(bookings[i].booking_id) + " Booking Date: " + bookings[i].booking_date + " Num. Weeks: " + strconv.Itoa(bookings[i].num_weeks) + " Property Owner: " + bookings[i].property_owner_name + " Contact Number: " + bookings[i].contact_number + " Address: " + bookings[i].address + " Rooms: " + strconv.Itoa(bookings[i].rooms) + " Garden Area: " + strconv.Itoa(bookings[i].garden_area) + " Total Cost: " + strconv.Itoa(get_luxury_cost((bookings[i].rooms_cost + bookings[i].garden_area_cost), bookings[i].security_alarm_check, bookings[i].pool_maintenance)) + "\n"
+			s_output += "ID: " + strconv.Itoa(bookings[i].booking_id) + " Booking Date: " + bookings[i].booking_date + " Num. Weeks: " + strconv.Itoa(bookings[i].num_weeks) + " Property Owner: " + bookings[i].property_owner_name + " Contact Number: " + bookings[i].contact_number + " Address: " + bookings[i].address + " Rooms: " + strconv.Itoa(bookings[i].rooms) + " Garden Area: " + strconv.Itoa(bookings[i].garden_area) + " Total Cost: " + strconv.Itoa(get_total_cost(bookings[i].num_weeks, bookings[i].rooms_cost, bookings[i].garden_area_cost, bookings[i].security_alarm_check, bookings[i].pool_maintenance)) + "\n"
 		}
 		output.Set(s_output)
 	})
