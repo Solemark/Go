@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 
 	"fyne.io/fyne/v2/app"
@@ -26,7 +25,6 @@ type Booking struct{
 }
 
 func get_luxury_cost(luxury_cost int, security_alarm_check bool, pool_maintenance bool) int{
-	//fmt.Println(security_alarm_check, pool_maintenance)
 	if(security_alarm_check){
 		luxury_cost += 50
 	}
@@ -40,7 +38,6 @@ func save(bookings[]Booking, booking_date string, s_num_weeks string, property_o
 	rooms, _ := strconv.Atoi(s_rooms)
 	num_weeks, _ := strconv.Atoi(s_num_weeks)
 	garden_area, _ := strconv.Atoi(s_garden_area)
-	fmt.Println(security_alarm_check, pool_maintenance)
 	booking := Booking{len(bookings), booking_date, num_weeks, property_owner_name, contact_number, address, rooms, (rooms * 5), garden_area, (garden_area * 2), security_alarm_check, pool_maintenance}
 	bookings = append(bookings, booking)
 	return bookings
