@@ -34,11 +34,8 @@ func get_luxury_cost(luxury_cost int, security_alarm_check bool, pool_maintenanc
 	return luxury_cost
 }
 
-func save(bookings[]Booking, booking_date string, s_num_weeks string, property_owner_name string, contact_number string, address string, s_rooms string, s_garden_area string, security_alarm_check bool, pool_maintenance bool) []Booking{
-	rooms, _ := strconv.Atoi(s_rooms)
-	num_weeks, _ := strconv.Atoi(s_num_weeks)
-	garden_area, _ := strconv.Atoi(s_garden_area)
-	booking := Booking{len(bookings), booking_date, num_weeks, property_owner_name, contact_number, address, rooms, (rooms * 5), garden_area, (garden_area * 2), security_alarm_check, pool_maintenance}
+func save(bookings[]Booking, booking_date string, num_weeks int, property_owner_name string, contact_number string, address string, rooms int, garden_area int, security_alarm_check bool, pool_maintenance bool) []Booking{
+	booking := Booking{(len(bookings) + 1), booking_date, num_weeks, property_owner_name, contact_number, address, rooms, (rooms * 5), garden_area, (garden_area * 2), security_alarm_check, pool_maintenance}
 	bookings = append(bookings, booking)
 	return bookings
 }
@@ -71,7 +68,10 @@ func booking_gui(){
 	output.Set(s_output)
 
 	save_button := widget.NewButton("Save", func(){
-		bookings = save(bookings, s_booking_date.Text, s_num_weeks.Text, s_property_owner_name.Text, s_contact_number.Text, s_address.Text, s_rooms.Text, s_garden_area.Text, security_alarm_check, pool_maintenance)
+		num_weeks, _ := strconv.Atoi(s_num_weeks.Text)
+		rooms, _ := strconv.Atoi(s_rooms.Text)
+		garden_area, _ := strconv.Atoi(s_garden_area.Text)
+		bookings = save(bookings, s_booking_date.Text, num_weeks, s_property_owner_name.Text, s_contact_number.Text, s_address.Text, rooms, garden_area, security_alarm_check, pool_maintenance)
 		s_booking_date.SetText("")
 		s_num_weeks.SetText("")
 		s_property_owner_name.SetText("")
