@@ -1,25 +1,29 @@
-package fizz_buzz
+package main
 
 import (
+	"fmt"
 	"strconv"
+	"strings"
 )
 
 func fizz_buzz(fizz int, buzz int, max int) string{
-	output := ""
-	str := ""
+	var output string
 	for i := 1; i <= max; i++ {
-		str = ""
 		if i % fizz == 0 {
-			str += "fizz"
+			output += "fizz"
 		}
 		if i % buzz == 0 {
-			str += "buzz"
+			output += "buzz"
 		}
-		if str == "" {
-			str += strconv.Itoa(i)
+		res := strings.HasSuffix(output, "z")
+		if !res {
+			output += strconv.Itoa(i)
 		}
-		str += "\n"
-		output += str 
+		output += "\n"
 	}
 	return output
+}
+
+func main(){
+	fmt.Println(fizz_buzz(3, 5, 20))
 }
